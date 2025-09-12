@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ぷりん屋 — サンプルページ</title>
+<style>
+  :root{
+    --accent:#b86b3a;
+    --muted:#6b6b6b;
+    --bg:#fff8f2;
+    --card:#fff;
+    --radius:10px;
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  }
+  body{
+    margin:0;
+    background: linear-gradient(180deg,var(--bg),#fff);
+    color:#222;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{
+    max-width:1100px;
+    margin:24px auto;
+    padding:20px;
+  }
+
+  header{
+    display:flex;
+    gap:20px;
+    align-items:center;
+    border-radius:var(--radius);
+    padding:18px;
+    background:rgba(255,255,255,0.85);
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  }
+  .logo{
+    width:240px;
+    min-width:220px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .logo img{
+    width:100px;
+    height:auto;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid var(--accent);
+  }
+  .brand{
+    font-weight:700;
+  }
+  .since{
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  .hero{
+    margin-top:18px;
+    padding:18px;
+    border-radius:var(--radius);
+    background:linear-gradient(90deg,rgba(184,107,58,0.06),rgba(184,107,58,0.02));
+    display:grid;
+    grid-template-columns: 1fr 320px;
+    gap:20px;
+    align-items:start;
+  }
+  .philosophy{
+    padding:12px;
+  }
+  .philosophy h2{
+    margin:0 0 6px 0;
+    font-size:18px;
+  }
+  .philosophy p{
+    margin:8px 0;
+    color:var(--muted);
+  }
+
+  .rep-card{
+    background:var(--card);
+    padding:12px;
+    border-radius:8px;
+    box-shadow:0 6px 12px rgba(0,0,0,0.03);
+    text-align:center;
+  }
+  .rep-card img{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+    display:block;
+    margin:0 auto 8px;
+  }
+  .rep-card h3{margin:6px 0 2px; font-size:16px;}
+  .rep-card small{color:var(--muted); display:block; margin-bottom:8px;}
+
+  /* Org + map row */
+  .row{
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:20px;
+    margin-top:20px;
+  }
+  .card{
+    background:var(--card);
+    padding:14px;
+    border-radius:var(--radius);
+    box-shadow:0 6px 12px rgba(0,0,0,0.04);
+  }
+  .org{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    flex-wrap:wrap;
+  }
+  .org .box{
+    border:2px dashed #e7e0d8;
+    padding:8px 12px;
+    border-radius:8px;
+    min-width:120px;
+    text-align:center;
+    font-size:14px;
+  }
+
+  .team{
+    display:flex;
+    gap:12px;
+    margin-top:12px;
+    flex-wrap:wrap;
+  }
+  .team .member{
+    width:calc(33.333% - 8px);
+    min-width:140px;
+    text-align:center;
+  }
+  .member img{
+    width:96px;height:96px;border-radius:10px;object-fit:cover;
+  }
+  .member h4{margin:8px 0 2px;}
+  .member p{font-size:13px;color:var(--muted); margin:0;}
+
+  /* products */
+  .products{
+    margin-top:20px;
+    padding:18px;
+    border-radius:var(--radius);
+    background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(250,245,240,0.9));
+  }
+  .products h2{margin:0 0 12px;}
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+    gap:14px;
+  }
+  .card.product{
+    text-align:center;
+    padding:12px;
+  }
+  .product img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    border-radius:10px;
+    background:#fff;
+  }
+  .price{
+    margin-top:8px;
+    font-weight:700;
+    color:var(--accent);
+  }
+
+  footer{
+    margin-top:26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .sns{display:flex; gap:10px; align-items:center;}
+  .sns a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:38px;height:38px;border-radius:8px;
+    background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    text-decoration:none; color:var(--muted); font-weight:700;
+  }
+
+  /* responsive */
+  @media (max-width:900px){
+    .hero{grid-template-columns: 1fr;}
+    .row{grid-template-columns:1fr;}
+    .team .member{width:calc(50% - 8px)}
+  }
+  @media (max-width:500px){
+    .team .member{width:100%;}
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- header -->
+  <header>
+    <div class="logo">
+      <img src="logo-alter2.jpg" alt="ぷりん屋 ロゴ">
+      <div>
+        <div class="brand">ぷりん屋（SINKOIWA TOKYO）</div>
+        <div class="since">since 2023 — 新小岩から世界へ</div>
+        <div style="font-size:12px;color:var(--muted)">おいしさからしあわせを…</div>
+      </div>
+    </div>
+
+    <nav style="margin-left:auto;font-size:14px;color:var(--muted)">
+      <a href="#menu" style="margin-right:14px">メニュー</a>
+      <a href="#company" style="margin-right:14px">会社案内</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </header>
+
+  <!-- hero: philosophy + rep -->
+  <section id="company" class="hero" aria-labelledby="philo-heading">
+    <div class="philosophy">
+      <h2 id="philo-heading">企業理念</h2>
+      <p><strong>おいしさからしあわせを…</strong></p>
+      <p>新小岩の土地でプリンをつくっています。地元のたまごと素材を大切にし、親から子へ、世界へ、笑顔を届けます。最後は人間力で。</p>
+
+      <div style="margin-top:12px;">
+        <h3 style="margin:0 0 6px 0;">代表メッセージ</h3>
+        <p style="color:var(--muted);margin:0;">
+          新小岩から世界へ旅するプリンをお届けするために、私たちは毎日小さい工房で心を込めて焼いています。ぜひ一度ご賞味ください。
+        </p>
+      </div>
+    </div>
+
+    <aside class="rep-card" aria-label="代表">
+      <img src="representative-placeholder.jpg" alt="代表の写真">
+      <h3>代表：平松 裕造</h3>
+      <small>ぷりん屋 代表</small>
+      <p style="font-size:13px;color:var(--muted);">「最後は人間力です!!」</p>
+    </aside>
+  </section>
+<!--menu-->
+  <section id="menu" class="products" aria-labelledby="products-heading">
+    <h2 id="products-heading">オリジナルプリン セレクション</h2>
+    <p style="color:var(--muted);margin-top:4px;">新小岩の素材から生まれた多彩な味。ギフトにもどうぞ。</p>
+    予約は<a href="#contact" style="margin-right:14px">こちら</a>からお願いします。
+    <div class="grid" style="margin-top:12px;">
+      <div class="card product">
+        <img src="/images/pudding-sweet.jpg" alt="スイートプリン">
+        <div style="margin-top:8px">スイート</div>
+        <div class="price">¥850</div>
+      </div>
+
+      <div class="card product">
+        <img src="/images/pudding-bitter.jpg" alt="ビタープリン">
+        <div style="margin-top:8px">ビター</div>
+        <div class="price">¥850</div>
+      </div>
+
+      <div class="card product">
+        <img src="/images/pudding-gokujyo.jpg" alt="極上プリン">
+        <div style="margin-top:8px">極上</div>
+        <div class="price">¥1,050</div>
+      </div>
+
+      <div class="card product">
+        <img src="/images/pudding-sweet-harden.jpg" alt="スイートかため">
+        <div style="margin-top:8px">スイートかため</div>
+        <div class="price">¥850</div>
+      </div>
+
+      <div class="card product">
+        <img src="/images/pudding-choco.jpg" alt="チョコプリン">
+        <div style="margin-top:8px">チョコ れいと</div>
+        <div class="price">¥900</div>
+      </div>
+
+      <div class="card product">
+        <img src="/images/pudding-matcha.jpg" alt="抹茶プリン">
+        <div style="margin-top:8px">まっちゃ</div>
+        <div class="price">¥950</div>
+      </div>
+
+      <div class="card product">
+        <img src="/images/pudding-coffee.jpg" alt="コーヒープリン">
+        <div style="margin-top:8px">コーヒー</div>
+        <div class="price">¥950</div>
+      </div>
+
+      <div class="card product">
+        <img src="/images/pudding-cream.jpg" alt="クリームプリン">
+        <div style="margin-top:8px">クリーム・ぷりん</div>
+        <div class="price">¥900</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- org + map -->
+  <div class="row">
+    <aside class="card" aria-labelledby="map-heading">
+      <h2 id="map-heading">お店の場所</h2>
+<iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6478.640409046898!2d139.8587062!3d35.71834280000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601887f027affe2f%3A0xf4a6004ac086e54e!2z44G344KK44KT5bGL44Gy44KJ5p2-!5e0!3m2!1sja!2sjp!4v1757699561444!5m2!1sja!2sjp" 
+  width="100%" 
+  height="300" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+
+      <div style="margin-top:12px;font-size:13px;color:var(--muted)">
+        住所：東京都葛飾区新小岩（サンプル）<br>
+        営業時間：11:00〜18:00（不定休）
+      </div>
+    </aside>
+  </div>
+
+<section id="contact" class="card" style="margin-top:40px;">
+  <h2>お問い合わせ / ご予約</h2>
+  <p style="color:var(--muted);margin-top:4px;">
+    予約はこちらの番号へお願いします：
+    <a href="tel:0312345678" style="color:var(--accent); font-weight:700; text-decoration:none;">
+      03-1234-5678
+    </a>
+  </p>
+  <p style="color:var(--muted);margin-top:4px;">
+    （受付時間：11:00〜18:00 不定休）
+  </p>
+</section>
+
+  <!-- footer -->
+  <footer>
+    <div>
+      <strong>ぷりん屋 ひら松（新小岩）</strong><br>
+      <small style="color:var(--muted)">〒124-0023 東京都葛飾区新小岩 1丁目 1-7 二興ビル　102</small>
+    </div>
+    <div class="sns" aria-label="SNSリンク">
+      <a href="https://www.instagram.com/hiramatsu_pudding/?hl=ja" title="Instagram">In</a>
+      <a href="#" title="X（旧Twitter）">X</a>
+      <a href="#" title="TikTok">tik</a>
+    </div>
+  </footer>
+　
+</div>
+</body>
+</html>
