@@ -5,6 +5,33 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>ぷりん屋 — サンプルページ</title>
 <style>
+    #splash {
+    position: fixed;
+    inset: 0;
+    background: #fff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 2s ease 1s forwards;
+  }
+
+  #splash img {
+    max-width: 500px; 
+    height: auto;
+  }
+
+  /* フェードアウトのアニメーション */
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; visibility: hidden; }
+  }
+
+  /* サンプル用の本体 */
+  main {
+    padding: 20px;
+    font-size: 1.2em;
+  }
   :root{
     --accent:#b86b3a;
     --muted:#6b6b6b;
@@ -203,6 +230,11 @@
 </style>
 </head>
 <body>
+    <!-- logo -->
+<div id="splash">
+  <img src="logo-alter2.jpg" alt="ロゴ">
+</div>
+
 <div class="container">
 
   <!-- header -->
@@ -250,56 +282,92 @@
     <h2 id="products-heading">オリジナルプリン セレクション</h2>
     <p style="color:var(--muted);margin-top:4px;">新小岩の素材から生まれた多彩な味。ギフトにもどうぞ。</p>
     予約は<a href="#contact" style="margin-right:14px">こちら</a>からお願いします。
+    お支払い方法は<a href="#pay" style="margin-right:14px">こちら</a>
     <div class="grid" style="margin-top:12px;">
       <div class="card product">
-        <img src="/images/pudding-sweet.jpg" alt="スイートプリン">
-        <div style="margin-top:8px">スイート</div>
-        <div class="price">¥850</div>
-      </div>
-
-      <div class="card product">
-        <img src="/images/pudding-bitter.jpg" alt="ビタープリン">
+        <img src="1.jpg" alt="ビター">
         <div style="margin-top:8px">ビター</div>
-        <div class="price">¥850</div>
+        <div class="price">￥３９０</div>
       </div>
 
       <div class="card product">
-        <img src="/images/pudding-gokujyo.jpg" alt="極上プリン">
-        <div style="margin-top:8px">極上</div>
-        <div class="price">¥1,050</div>
+        <img src="2.jpg" alt="チョコレート">
+        <div style="margin-top:8px">チョコレート</div>
+        <div class="price">￥４３０</div>
       </div>
-
+      
       <div class="card product">
-        <img src="/images/pudding-sweet-harden.jpg" alt="スイートかため">
-        <div style="margin-top:8px">スイートかため</div>
-        <div class="price">¥850</div>
-      </div>
-
-      <div class="card product">
-        <img src="/images/pudding-choco.jpg" alt="チョコプリン">
-        <div style="margin-top:8px">チョコ れいと</div>
-        <div class="price">¥900</div>
-      </div>
-
-      <div class="card product">
-        <img src="/images/pudding-matcha.jpg" alt="抹茶プリン">
-        <div style="margin-top:8px">まっちゃ</div>
-        <div class="price">¥950</div>
-      </div>
-
-      <div class="card product">
-        <img src="/images/pudding-coffee.jpg" alt="コーヒープリン">
+        <img src="3.jpg" alt="コーヒー">
         <div style="margin-top:8px">コーヒー</div>
-        <div class="price">¥950</div>
+        <div class="price">￥４８０</div>
+      </div>
+      
+      <div class="card product">
+        <img src="4.jpg" alt="コーヒー２">
+        <div style="margin-top:8px">コーヒーゼリー</div>
+        <div class="price">￥５００</div>
+      </div>
+      
+      <div class="card product">
+        <img src="5.jpg" alt="フルーツ">
+        <div style="margin-top:8px">フルーツ</div>
+        <div class="price">￥５００
+        </div>
+      </div>
+      
+      <div class="card product">
+        <img src="6.jpg" alt="極上">
+        <div style="margin-top:8px">極上</div>
+        <div class="price">￥４９０</div>
+      </div>
+      
+      <div class="card product">
+        <img src="7.jpg" alt="ほうじ茶">
+        <div style="margin-top:8px">ほうじ茶</div>
+        <div class="price">￥４８０</div>
+      </div>
+      
+      <div class="card product">
+        <img src="8.jpg" alt="抹茶">
+        <div style="margin-top:8px">抹茶</div>
+        <div class="price">￥４８０</div>
+      </div>
+      
+      <div class="card product">
+        <img src="9.jpg" alt="塩">
+        <div style="margin-top:8px">塩</div>
+        <div class="price">￥４３０</div>
+      </div>
+      
+      <div class="card product">
+        <img src="10.jpg" alt="スイート">
+        <div style="margin-top:8px">スイート</div>
+        <div class="price">￥３９０</div>
+      </div>
+      
+      <div class="card product">
+        <img src="11.jpg" alt="スイート２">
+        <div style="margin-top:8px">スイート(固め)</div>
+        <div class="price">￥３９０</div>
+      </div>
+      
+      <div class="card product">
+        <img src="12.jpg" alt="ブリュレ">
+        <div style="margin-top:8px">ブリュレ</div>
+        <div class="price">￥４００</div>
       </div>
 
       <div class="card product">
-        <img src="/images/pudding-cream.jpg" alt="クリームプリン">
-        <div style="margin-top:8px">クリーム・ぷりん</div>
-        <div class="price">¥900</div>
+        <img src="13.jpg" alt="食べ比べ">
+        <div style="margin-top:8px">食べ比べセット</div>
+        <div class="price">￥１２００</div>
       </div>
 
-    </div>
+      <div class="card product">
+        <img src="14.png" alt="お茶セット">
+        <div style="margin-top:8px">お茶セット</div>
+        <div class="price">￥１３００</div>
+      </div>
   </section>
 
   <!-- org + map -->
@@ -337,6 +405,12 @@
   </p>
 </section>
 
+<section id="pay" class="card" style="margin-top:40px;">
+  <h2>お支払方法</h2>
+  <img src="kaikei.jpg" alt="お支払方法" style="max-width:600px; height:auto">
+</section>
+
+
   <!-- footer -->
   <footer>
     <div>
@@ -353,3 +427,4 @@
 </div>
 </body>
 </html>
+
