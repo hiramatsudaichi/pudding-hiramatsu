@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ぷりん屋ひら松　ホームページ</title>
+<title>ぷりん屋 — サンプルページ</title>
 <style>
-    #splash {
+  /* スプラッシュ */
+  #splash {
     position: fixed;
     inset: 0;
     background: #fff; 
@@ -15,21 +16,12 @@
     z-index: 9999;
     animation: fadeOut 2s ease 1s forwards;
   }
-
-  #splash img {
-    max-width: 500px; 
-    height: auto;
-  }
+  #splash img { max-width: 500px; height: auto; }
   @keyframes fadeOut {
     from { opacity: 1; }
     to   { opacity: 0; visibility: hidden; }
   }
 
-  /* サンプル用の本体 */
-  main {
-    padding: 20px;
-    font-size: 1.2em;
-  }
   :root{
     --accent:#b86b3a;
     --muted:#6b6b6b;
@@ -44,413 +36,222 @@
     color:#222;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
-    font-size: clamp(14px, 2.5vw, 18px);
   }
-  .container{
-    max-width:1100px;
-    margin:24px auto;
-    padding:20px;
-  }
+  .container{max-width:1100px;margin:24px auto;padding:20px;}
 
-  header{
-    display:flex;
-    gap:20px;
-    align-items:center;
-    border-radius:var(--radius);
-    padding:18px;
-    background:rgba(255,255,255,0.85);
-    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  /* サイドバー */
+  .sidebar {
+    position: fixed; top: 0; left: -250px;
+    width: 220px; height: 100%;
+    background: #fff;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: left 0.3s ease;
+    z-index: 1000;
   }
-  .logo{
-    width:240px;
-    min-width:220px;
-    display:flex;
-    align-items:center;
-    gap:12px;
+  .sidebar.open { left: 0; }
+  .sidebar a {
+    display: block; margin: 12px 0;
+    color: var(--muted); text-decoration: none; font-weight: 600;
   }
-  .logo img{
-    width:100px;
-    height:auto;
-    object-fit:cover;
-    border-radius:50%;
-    border:3px solid var(--accent);
-  }
-  .brand{
-    font-weight:700;
-  }
-  .since{
-    font-size:12px;
-    color:var(--muted);
-  }
+  .sidebar a:hover { color: var(--accent); }
 
+  /* ハンバーガーボタン */
+  .toggle-btn {
+    position: fixed; top: 20px; left: 20px;
+    background: var(--accent); color: #fff;
+    border: none; padding: 10px 14px;
+    border-radius: 6px; cursor: pointer;
+    z-index: 1100; font-size: 20px;
+    opacity: 0.7; transition: opacity 0.3s;
+  }
+  .toggle-btn:hover { opacity: 1; }
+
+  /* 閉じるボタン */
+  .close-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: transparent; border: none;
+    font-size: 26px; cursor: pointer;
+    color: var(--muted); transition: color 0.2s;
+  }
+  .close-btn:hover { color: var(--accent); }
+
+  /* ヒーローヘッダ */
+  .hero-header {
+    position: relative;
+    height: 100vh;
+    background: url("logo-alter2.jpg") center/cover no-repeat;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; text-align: center;
+  }
+  .hero-header .overlay {
+    background: rgba(0,0,0,0.4);
+    padding: 20px 40px;
+    border-radius: 12px;
+  }
+  .hero-header h1 { font-size: 2.2rem; margin: 0 0 10px; }
+
+  /* コンテンツ */
   .hero{
-    margin-top:18px;
-    padding:18px;
+    margin-top:18px; padding:18px;
     border-radius:var(--radius);
     background:linear-gradient(90deg,rgba(184,107,58,0.06),rgba(184,107,58,0.02));
-    display:grid;
-    grid-template-columns: 1fr 320px;
-    gap:20px;
-    align-items:start;
+    display:grid; grid-template-columns: 1fr 320px;
+    gap:20px; align-items:start;
   }
-  .philosophy{
-    padding:12px;
-  }
-  .philosophy h2{
-    margin:0 0 6px 0;
-    font-size:18px;
-  }
-  .philosophy p{
-    margin:8px 0;
-    color:var(--muted);
-  }
+  .philosophy h2{margin:0 0 6px 0;font-size:18px;}
+  .philosophy p{margin:8px 0;color:var(--muted);}
 
   .rep-card{
-    background:var(--card);
-    padding:12px;
-    border-radius:8px;
-    box-shadow:0 6px 12px rgba(0,0,0,0.03);
+    background:var(--card); padding:12px;
+    border-radius:8px; box-shadow:0 6px 12px rgba(0,0,0,0.03);
     text-align:center;
   }
   .rep-card img{
-    width:120px;
-    height:120px;
-    object-fit:cover;
-    border-radius:10px;
-    display:block;
-    margin:0 auto 8px;
+    width:120px; height:120px; object-fit:cover;
+    border-radius:10px; display:block; margin:0 auto 8px;
   }
-  .rep-card h3{margin:6px 0 2px; font-size:16px;}
+  .rep-card h3{margin:6px 0 2px;font-size:16px;}
   .rep-card small{color:var(--muted); display:block; margin-bottom:8px;}
 
-  /* Org + map row */
-  .row{
-    display:grid;
-    grid-template-columns: 1fr 360px;
-    gap:20px;
-    margin-top:20px;
-  }
-  .card{
-    background:var(--card);
-    padding:14px;
-    border-radius:var(--radius);
-    box-shadow:0 6px 12px rgba(0,0,0,0.04);
-  }
-  .org{
-    display:flex;
-    gap:12px;
-    align-items:flex-start;
-    flex-wrap:wrap;
-  }
-  .org .box{
-    border:2px dashed #e7e0d8;
-    padding:8px 12px;
-    border-radius:8px;
-    min-width:120px;
-    text-align:center;
-    font-size:14px;
-  }
-
-  .team{
-    display:flex;
-    gap:12px;
-    margin-top:12px;
-    flex-wrap:wrap;
-  }
-  .team .member{
-    width:calc(33.333% - 8px);
-    min-width:140px;
-    text-align:center;
-  }
-  .member img{
-    width:96px;height:96px;border-radius:10px;object-fit:cover;
-  }
-  .member h4{margin:8px 0 2px;}
-  .member p{font-size:13px;color:var(--muted); margin:0;}
-
-  /* products */
   .products{
-    margin-top:20px;
-    padding:18px;
-    border-radius:var(--radius);
+    margin-top:20px; padding:18px; border-radius:var(--radius);
     background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(250,245,240,0.9));
   }
-  .products h2{margin:0 0 12px;}
-  .grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
-    gap:14px;
-  }
-  .card.product{
-    text-align:center;
-    padding:12px;
-  }
-  .product img{
-    width:100%;
-    height:auto;
-    max-height:220px;
-    object-fit:cover;
-    border-radius:10px;
-    background:#fff;
-  }
-  .price{
-    margin-top:8px;
-    font-weight:700;
-    color:var(--accent);
-  }
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;}
+  .card{background:var(--card);padding:12px;border-radius:var(--radius);box-shadow:0 6px 12px rgba(0,0,0,0.04);}
+  .product{text-align:center;}
+  .product img{width:100%;height:180px;object-fit:cover;border-radius:10px;background:#fff;}
+  .price{margin-top:8px;font-weight:700;color:var(--accent);}
 
   footer{
-    margin-top:26px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-    flex-wrap:wrap;
+    margin-top:26px; display:flex;
+    justify-content:space-between; align-items:center;
+    gap:12px; flex-wrap:wrap;
   }
-  .sns{display:flex; gap:10px; align-items:center;}
+  .sns{display:flex; gap:10px;}
   .sns a{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
+    display:inline-flex; align-items:center; justify-content:center;
     width:38px;height:38px;border-radius:8px;
     background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.05);
     text-decoration:none; color:var(--muted); font-weight:700;
   }
 
-  /* responsive */
-/* responsive */
-@media (max-width:900px){
-    .hero{
-        grid-template-columns:1fr;
-        gap:30px;
-    }
-    .row{grid-template-columns:1fr;}
-    .team .member{width:calc(50% - 8px);}
-}
-
-@media (max-width:700px){
-    header nav{
-        display:flex;
-        flex-direction:column;
-        align-items:flex-end;
-        gap:6px;
-        font-size:13px;
-    }
-}
-
-@media (max-width:600px){
-    .logo img{width:72px;}
-    .logo {min-width:auto;}
-    section{margin-top:32px;}
-}
-
-@media (max-width:500px){
-    .team .member{width:100%;}
-}
+  @media (max-width:900px){.hero{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-    <!-- logo -->
-<div id="splash">
-  <img src="logo-alter2.jpg" alt="ロゴ">
-</div>
+<!-- ハンバーガーボタン -->
+<button id="menuBtn" class="toggle-btn">☰</button>
+
+<!-- サイドバー -->
+<nav id="sidebar" class="sidebar">
+  <button id="closeBtn" class="close-btn">×</button>
+  <a href="#menu">メニュー</a>
+  <a href="#company">会社案内</a>
+  <a href="#contact">お問い合わせ</a>
+</nav>
+
+<script>
+const sidebar = document.getElementById("sidebar");
+const menuBtn = document.getElementById("menuBtn");
+const closeBtn = document.getElementById("closeBtn");
+const links = sidebar.querySelectorAll("a");
+
+menuBtn.addEventListener("click", () => {
+  sidebar.classList.add("open");
+  menuBtn.style.display = "none";
+});
+closeBtn.addEventListener("click", () => {
+  sidebar.classList.remove("open");
+  menuBtn.style.display = "block";
+});
+links.forEach(link => {
+  link.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+    menuBtn.style.display = "block";
+  });
+});
+</script>
+
+<!-- スプラッシュ -->
+<div id="splash"><img src="logo-alter2.jpg" alt="ロゴ"></div>
 
 <div class="container">
 
-  <!-- header -->
-  <header>
-    <div class="logo">
-      <img src="logo-alter2.jpg" alt="ぷりん屋 ロゴ">
-      <div>
-        <div class="brand">ぷりん屋（SINKOIWA TOKYO）</div>
-        <div class="since">since 2023 — 新小岩から世界へ</div>
-        <div style="font-size:12px;color:var(--muted)">おいしさからしあわせを…</div>
-      </div>
+  <!-- ヒーローヘッダ -->
+  <header class="hero-header">
+    <div class="overlay">
+      <h1>ぷりん屋（SINKOIWA TOKYO）</h1>
+      <p>since 2023 — 新小岩から世界へ</p>
+      <p>おいしさからしあわせを…</p>
     </div>
-
-    <nav style="margin-left:auto;font-size:14px;color:var(--muted)">
-      <a href="#menu" style="margin-right:14px">メニュー</a>
-      <a href="#company" style="margin-right:14px">会社案内</a>
-      <a href="#contact">お問い合わせ</a>
-    </nav>
   </header>
 
-  <!-- hero: philosophy + rep -->
-  <section id="company" class="hero" aria-labelledby="philo-heading">
+  <!-- 会社案内 -->
+  <section id="company" class="hero">
     <div class="philosophy">
-      <h2 id="philo-heading">企業理念</h2>
+      <h2>企業理念</h2>
       <p><strong>おいしさからしあわせを…</strong></p>
       <p>新小岩の土地でプリンをつくっています。地元のたまごと素材を大切にし、親から子へ、世界へ、笑顔を届けます。最後は人間力で。</p>
-
-      <div style="margin-top:12px;">
-        <h3 style="margin:0 0 6px 0;">代表メッセージ</h3>
-        <p style="color:var(--muted);margin:0;">
-        「美味しいプリンから幸せを。」特別な日も何ともない日常も、この一口が喜びの瞬間になってほしい。お客様に心から満足していただけるようひとつひとつ丁寧にお作りしています。
-        </p>   
-      </div>
+      <h3>代表メッセージ</h3>
+      <p style="color:var(--muted);">新小岩から世界へ旅するプリンをお届けするために、私たちは毎日小さい工房で心を込めて焼いています。ぜひ一度ご賞味ください。</p>
     </div>
-
-    <aside class="rep-card" aria-label="代表">
+    <aside class="rep-card">
       <img src="representative-placeholder.jpg" alt="代表の写真">
       <h3>代表：平松 裕造</h3>
       <small>ぷりん屋 代表</small>
       <p style="font-size:13px;color:var(--muted);">「最後は人間力です!!」</p>
     </aside>
   </section>
-<!--menu-->
-  <section id="menu" class="products" aria-labelledby="products-heading">
-    <h2 id="products-heading">オリジナルプリン セレクション</h2>
+
+  <!-- メニュー -->
+  <section id="menu" class="products">
+    <h2>オリジナルプリン セレクション</h2>
     <p style="color:var(--muted);margin-top:4px;">新小岩の素材から生まれた多彩な味。ギフトにもどうぞ。</p>
-    予約は<a href="#contact" style="margin-right:14px">こちら</a>からお願いします。
-    お支払い方法は<a href="#pay" style="margin-right:14px">こちら</a>
+    予約は<a href="#contact">こちら</a>からお願いします。
     <div class="grid" style="margin-top:12px;">
-      <div class="card product">
-        <img src="1.jpg" alt="ビター">
-        <div style="margin-top:8px">ビター</div>
-        <div class="price">￥３９０</div>
-      </div>
-
-      <div class="card product">
-        <img src="2.jpg" alt="チョコレート">
-        <div style="margin-top:8px">チョコレート</div>
-        <div class="price">￥４３０</div>
-      </div>
-      
-      <div class="card product">
-        <img src="3.jpg" alt="コーヒー">
-        <div style="margin-top:8px">コーヒー</div>
-        <div class="price">￥４８０</div>
-      </div>
-      
-      <div class="card product">
-        <img src="4.jpg" alt="コーヒー２">
-        <div style="margin-top:8px">コーヒーゼリー</div>
-        <div class="price">￥５００</div>
-      </div>
-      
-      <div class="card product">
-        <img src="5.jpg" alt="フルーツ">
-        <div style="margin-top:8px">フルーツ</div>
-        <div class="price">￥５００
-        </div>
-      </div>
-      
-      <div class="card product">
-        <img src="6.jpg" alt="極上">
-        <div style="margin-top:8px">極上</div>
-        <div class="price">￥４９０</div>
-      </div>
-      
-      <div class="card product">
-        <img src="7.jpg" alt="ほうじ茶">
-        <div style="margin-top:8px">ほうじ茶</div>
-        <div class="price">￥４８０</div>
-      </div>
-      
-      <div class="card product">
-        <img src="8.jpg" alt="抹茶">
-        <div style="margin-top:8px">抹茶</div>
-        <div class="price">￥４８０</div>
-      </div>
-      
-      <div class="card product">
-        <img src="9.jpg" alt="塩">
-        <div style="margin-top:8px">塩</div>
-        <div class="price">￥４３０</div>
-      </div>
-      
-      <div class="card product">
-        <img src="10.jpg" alt="スイート">
-        <div style="margin-top:8px">スイート</div>
-        <div class="price">￥３９０</div>
-      </div>
-      
-      <div class="card product">
-        <img src="11.jpg" alt="スイート２">
-        <div style="margin-top:8px">スイート(固め)</div>
-        <div class="price">￥３９０</div>
-      </div>
-      
-      <div class="card product">
-        <img src="12.jpg" alt="ブリュレ">
-        <div style="margin-top:8px">ブリュレ</div>
-        <div class="price">￥４００</div>
-      </div>
-
-      <div class="card product">
-        <img src="13.jpg" alt="食べ比べ">
-        <div style="margin-top:8px">食べ比べセット</div>
-        <div class="price">￥１２００</div>
-      </div>
-
-      <div class="card product">
-        <img src="14.png" alt="お茶セット">
-        <div style="margin-top:8px">お茶セット</div>
-        <div class="price">￥１３００</div>
-      </div>
+      <div class="card product"><img src="1a.jpg" alt="ビター"><div>ビター</div><div class="price">￥390</div></div>
+      <div class="card product"><img src="2a.jpg" alt="チョコレート"><div>チョコレート</div><div class="price">￥430</div></div>
+      <div class="card product"><img src="3a.jpg" alt="コーヒー"><div>コーヒー</div><div class="price">￥480</div></div>
+      <div class="card product"> <img src="4a.jpg" alt="コーヒー２"><div style="margin-top:8px">コーヒーゼリー</div><div class="price">￥５００</div> </div> 
+      <div class="card product"> <img src="5a.jpg" alt="フルーツ"> <div style="margin-top:8px">フルーツ</div> <div class="price">￥５００ </div></div> 
+      <div class="card product"> <img src="6a.jpg" alt="極上"><div style="margin-top:8px">極上</div> <div class="price">￥４９０</div> 
+      </div> <div class="card product"> <img src="7a.jpg" alt="ほうじ茶"> <div style="margin-top:8px">ほうじ茶</div> <div class="price">￥４８０</div></div> 
+      <div class="card product"> <img src="8a.jpg" alt="抹茶"> <div style="margin-top:8px">抹茶</div> <div class="price">￥４８０</div></div> 
+      <div class="card product"> <img src="9a.jpg" alt="塩"> <div style="margin-top:8px">塩</div> <div class="price">￥４３０</div></div> 
+      <div class="card product"> <img src="10a.jpg" alt="スイート"> <div style="margin-top:8px">スイート</div> <div class="price">￥３９０</div> </div> 
+      <div class="card product"> <img src="11a.jpg" alt="スイート２"> <div style="margin-top:8px">スイート(固め)</div> <div class="price">￥３９０</div> </div>
+       <div class="card product"> <img src="12a.jpg" alt="ブリュレ"> <div style="margin-top:8px">ブリュレ</div> <div class="price">￥４００</div> </div> 
+       <div class="card product"> <img src="13a.jpg" alt="食べ比べ"> <div style="margin-top:8px">食べ比べセット</div> <div class="price">￥１２００</div> </div>
+        <div class="card product"> <img src="14a.png" alt="お茶セット"> <div style="margin-top:8px">お茶セット</div> <div class="price">￥１３００</div> </div>
+    </div>
   </section>
 
-  <!-- org + map -->
-  <div class="row">
-    <aside class="card" aria-labelledby="map-heading">
-      <h2 id="map-heading">お店の場所</h2>
-<iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6478.640409046898!2d139.8587062!3d35.71834280000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601887f027affe2f%3A0xf4a6004ac086e54e!2z44G344KK44KT5bGL44Gy44KJ5p2-!5e0!3m2!1sja!2sjp!4v1757699561444!5m2!1sja!2sjp" 
-  width="100%" 
-  height="300" 
-  style="border:0;" 
-  allowfullscreen="" 
-  loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
+  <!-- お問い合わせ -->
+  <section id="contact" class="card" style="margin-top:40px;">
+    <h2>お問い合わせ / ご予約</h2>
+    <p style="color:var(--muted);">予約はこちらの番号へ：<a href="tel:0312345678" style="color:var(--accent); font-weight:700;">03-1234-5678</a></p>
+  </section>
 
+  <!-- 支払方法 -->
+  <section id="pay" class="card" style="margin-top:40px;">
+    <h2>お支払方法</h2>
+    <img src="kaikei.png" alt="お支払方法" style="max-width:600px; height:auto">
+  </section>
 
-      <div style="margin-top:12px;font-size:13px;color:var(--muted)">
-        住所：東京都葛飾区新小岩（サンプル）<br>
-        営業時間：11:00〜18:00（不定休）
-      </div>
-    </aside>
-  </div>
-
-<section id="contact" class="card" style="margin-top:40px;">
-  <h2>お問い合わせ / ご予約</h2>
-  <p style="color:var(--muted);margin-top:4px;">
-    予約はこちらの番号へお願いします：
-    <a href="tel:0312345678" style="color:var(--accent); font-weight:700; text-decoration:none;">
-      03-1234-5678
-    </a>
-  </p>
-  <p style="color:var(--muted);margin-top:4px;">
-    （受付時間：11:00〜18:00 不定休）
-  </p>
-</section>
-
-<section id="pay" class="card" style="margin-top:40px;">
-  <h2>お支払方法</h2>
-  <img src="kaikei.png" alt="お支払方法" style="max-width:100%;width:600px; height:auto">
-</section>
-
-
-  <!-- footer -->
+  <!-- フッター -->
   <footer>
     <div>
       <strong>ぷりん屋 ひら松（新小岩）</strong><br>
-      <small style="color:var(--muted)">〒124-0023 東京都葛飾区新小岩 1丁目 1-7 二興ビル　102</small>
+      <small style="color:var(--muted)">〒124-0023 東京都葛飾区新小岩 1丁目 1-7 二興ビル 102</small>
     </div>
-    <div class="sns" aria-label="SNSリンク">
-      <a href="https://www.instagram.com/hiramatsu_pudding/?hl=ja" title="Instagram">In</a>
-      <a href="#" title="X（旧Twitter）">X</a>
-      <a href="#" title="TikTok">tik</a>
+    <div class="sns">
+      <a href="https://www.instagram.com/hiramatsu_pudding/?hl=ja">In</a>
+      <a href="#">X</a>
+      <a href="#">Tik</a>
     </div>
   </footer>
-　
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
