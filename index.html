@@ -42,6 +42,7 @@ body {
   color: #222;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x:hidden
 }
 .container {
   max-width: 1100px;
@@ -52,15 +53,23 @@ body {
 /* ------------------- サイドバー ------------------- */
 .sidebar {
   position: fixed;
-  top: 0; left: -250px;
-  width: 220px; height: 100%;
+  top: 0;
+  left: 0;               /* 左端に固定 */
+  width: 220px;
+  height: 100%;
   background: #fff;
   box-shadow: 2px 0 10px rgba(0,0,0,0.1);
   padding: 20px;
-  transition: left 0.3s ease;
   z-index: 1000;
+  
+  transform: translateX(-100%); /* 初期は画面外に隠す */
+  transition: transform 0.3s ease;
 }
-.sidebar.open { left: 0; }
+
+.sidebar.open {
+  transform: translateX(0); /* 開いたときに表示 */
+}
+
 .sidebar a {
   display: block;
   margin: 12px 0;
@@ -68,7 +77,10 @@ body {
   text-decoration: none;
   font-weight: 600;
 }
-.sidebar a:hover { color: var(--accent); }
+.sidebar a:hover {
+  color: var(--accent);
+}
+
 
 /* ------------------- ハンバーガーボタン ------------------- */
 .toggle-btn {
@@ -341,3 +353,4 @@ links.forEach(link => {
 </div>
 </body>
 </html>
+
